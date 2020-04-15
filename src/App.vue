@@ -1,9 +1,15 @@
 <template>
-  <div class="container"
-    >Confirmados -
-    {{ carregando ? 'Carregando...' : casosConfirmados.length }} || Registros
-    totais - {{ carregando ? 'Carregando...' : dadosNaoFiltrados.length }}
-
+  <div class="container">
+    <MenuDeTopo />
+    <InfosBasicas
+      :carregando="carregando"
+      :casos="{
+        negativos: casosNegativos.length,
+        confirmados: casosConfirmados.length,
+        emAnalise: casosEmAnalise.length,
+      }"
+      :ultima-atualizacao="ultimaAtualizacao"
+    />
     <GraficoPizza
       :carregando="carregando"
       :dados-grafico="{
@@ -16,6 +22,8 @@
 <script>
 import Axios from 'axios'
 import GraficoPizza from './components/GraficoPizza'
+import MenuDeTopo from './components/MenuDeTopo'
+import InfosBasicas from './components/InfosBasicas'
 
 const axios = Axios.create({
   baseURL:
@@ -24,12 +32,16 @@ const axios = Axios.create({
 export default {
   components: {
     GraficoPizza,
+    MenuDeTopo,
+    InfosBasicas,
   },
   data() {
     return {
       casosConfirmados: [],
       casosEmAnalise: [],
+      casosNegativos: [],
       dadosNaoFiltrados: [],
+      ultimaAtualizacao: new Date(),
       carregando: true,
       erro: false,
     }
@@ -67,6 +79,7 @@ export default {
         )
       })
 
+      // Filtra para casos em análise
       this.casosEmAnalise = arrayComElementosUnicos.filter((item) => {
         return (
           item.resultadoFinalExame === 'Em Análise' &&
@@ -74,6 +87,14 @@ export default {
         )
       })
 
+      this.casosNegativos = arrayComElementosUnicos.filter((item) => {
+        return (
+          item.resultadoFinalExame === 'Negativo' &&
+          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
+        )
+      })
+
+      this.ultimaAtualizacao = new Date()
       this.carregando = false
     },
   },
@@ -81,8 +102,10 @@ export default {
 </script>
 
 <style scoped>
-.wrap {
+.container {
   height: 100%;
-  background-image: linear-gradient(#45f792, #ffffff);
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 </style>

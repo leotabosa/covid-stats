@@ -59,13 +59,6 @@ export default {
           ].sort(function(a, b) {
             return a.value - b.value
           }),
-
-          itemStyle: {
-            color: '#c23531',
-            shadowBlur: 200,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-          },
-
           animationType: 'scale',
           animationEasing: 'elasticOut',
           animationDelay: function(idx) {
