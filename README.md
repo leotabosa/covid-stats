@@ -67,6 +67,8 @@ Para configurar o projeto e iniciar o devServer siga os passos:
   yarn ou npm install
 ```
 
+- Interessante instalar as extensoes recomendadas no VS Code.
+
 - Rode o projeto pelo terminal.
 
 ```SHELL
