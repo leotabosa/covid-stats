@@ -10,13 +10,15 @@
       }"
       :ultima-atualizacao="ultimaAtualizacao"
     />
-    <GraficoPizza
-      :carregando="carregando"
-      :dados-grafico="{
-        confirmados: casosConfirmados.length,
-        emAnalise: casosEmAnalise.length,
-      }"
-    />
+    <div class="graficos">
+      <GraficoPizza
+        :carregando="carregando"
+        :dados-grafico="{
+          confirmados: casosConfirmados.length,
+          emAnalise: casosEmAnalise.length,
+        }"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -107,5 +109,15 @@ export default {
   width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Raleway', 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.graficos {
+  padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .graficos {
+    padding: 10px;
+  }
 }
 </style>

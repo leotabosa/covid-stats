@@ -74,6 +74,7 @@ export default {
 <template>
   <div class="wrapper">
     <div v-if="!carregando" class="grafico">
+      <span class="tituloGrafico">Casos</span>
       <Grafico :autoresize="true" :options="dados" />
     </div>
     <div v-else class="loadingRectangle1 skeleton"></div>
@@ -85,8 +86,11 @@ export default {
   animation: opacityAnimation 1s ease-in;
 }
 .grafico {
+  text-align: center;
   height: 500px;
   width: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 }
 
 .skeleton {
@@ -103,8 +107,7 @@ export default {
 }
 
 .loadingRectangle1 {
-  width: calc(100% - 20px);
-  margin-left: 10px;
+  width: calc(33% - 7px);
   margin-top: 10px;
   height: 300px;
 }
@@ -118,17 +121,36 @@ export default {
   }
 }
 
+@keyframes fullPageAnimate {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .grafico {
     height: 300px;
     width: 100vw;
+  }
+
+  .loadingRectangle1 {
+    width: 100%;
   }
 }
 </style>
 
 <style scoped>
 .echarts {
-  width: 100% !important;
+  width: calc(100% - 20px) !important;
   height: 100% !important;
+}
+@media screen and (max-width: 768px) {
+  .echarts {
+    width: calc(100% - 20px) !important;
+    height: 100% !important;
+  }
 }
 </style>
