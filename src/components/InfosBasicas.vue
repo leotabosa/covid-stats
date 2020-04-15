@@ -171,9 +171,13 @@ export default {
   }
 
   .loadingSquare {
-    width: 100%;
-    margin-left: 10px;
+    width: calc(100% - 20px);
     margin-top: 10px;
+  }
+
+  .loadingRectangle {
+    width: calc(100% + 10px) !important;
+    margin-left: -10px;
   }
 
   .separador {
