@@ -71,12 +71,12 @@ export default {
   </div>
   <div v-else class="containerInfos">
     <section class="containerCasos">
-      <div class="loadingSquare skeleton" />
-      <div class="loadingSquare skeleton" />
-      <div class="loadingSquare skeleton" />
+      <div class="loadingRectangle1 skeleton" />
+      <div class="loadingRectangle1 skeleton" />
+      <div class="loadingRectangle1 skeleton" />
     </section>
     <section class="footerInfos">
-      <div class="loadingRectangle skeleton" />
+      <div class="loadingRectangle2 skeleton" />
     </section>
     <div class="separadorHorizontal" />
   </div>
@@ -136,12 +136,12 @@ export default {
   overflow: hidden;
 }
 
-.loadingSquare {
+.loadingRectangle1 {
   width: calc(33% - 20px);
   height: 130px;
 }
 
-.loadingRectangle {
+.loadingRectangle2 {
   width: 45ch;
   height: 30px;
   margin: 10px 0 0 0;
@@ -170,12 +170,12 @@ export default {
     flex-direction: column;
   }
 
-  .loadingSquare {
+  .loadingRectangle1 {
     width: calc(100% - 20px);
     margin-top: 10px;
   }
 
-  .loadingRectangle {
+  .loadingRectangle2 {
     width: calc(100% + 10px) !important;
     margin-left: -10px;
   }

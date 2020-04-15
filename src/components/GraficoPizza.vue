@@ -72,6 +72,63 @@ export default {
 </script>
 
 <template>
-  <Grafico v-if="!carregando" :autoresize="true" :options="dados" />
-  <div v-else>Carregando ok</div>
+  <div class="wrapper">
+    <div v-if="!carregando" class="grafico">
+      <Grafico :autoresize="true" :options="dados" />
+    </div>
+    <div v-else class="loadingRectangle1 skeleton"></div>
+  </div>
 </template>
+
+<style scoped>
+.wrapper {
+  animation: opacityAnimation 1s ease-in;
+}
+.grafico {
+  height: 500px;
+  width: 500px;
+}
+
+.skeleton {
+  border-radius: 6px;
+  background-color: #e0e6e9;
+  background: linear-gradient(to right, #e0e6e9 2%, #e8edee 5%, #e0e6e9 7%);
+  background-size: 2500px;
+  animation-name: fullPageAnimate;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  overflow: hidden;
+}
+
+.loadingRectangle1 {
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 300px;
+}
+
+@keyframes opacityAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grafico {
+    height: 300px;
+    width: 100vw;
+  }
+}
+</style>
+
+<style scoped>
+.echarts {
+  width: 100% !important;
+  height: 100% !important;
+}
+</style>
