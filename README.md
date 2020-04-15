@@ -70,5 +70,5 @@ Para configurar o projeto e iniciar o devServer siga os passos:
 - Rode o projeto pelo terminal.
 
 ```SHELL
-  yarn serve
+  yarn dev
 ```
