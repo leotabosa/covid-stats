@@ -9,13 +9,18 @@
         emAnalise: casosEmAnalise.length,
       }"
       :ultima-atualizacao="ultimaAtualizacao"
+      @atualizar="
+        atualizandoGraficos = true
+        carregaDados
+      "
     />
     <div class="graficos">
       <GraficoPizza
-        :carregando="carregando"
+        :carregando="carregando || atualizandoGraficos"
         :dados-grafico="{
           confirmados: casosConfirmados.length,
           emAnalise: casosEmAnalise.length,
+          obitos: obitos.length,
         }"
       />
     </div>
@@ -42,17 +47,18 @@ export default {
       casosConfirmados: [],
       casosEmAnalise: [],
       casosNegativos: [],
+      obitos: [],
       dadosNaoFiltrados: [],
       ultimaAtualizacao: new Date(),
       carregando: true,
       erro: false,
+      atualizandoGraficos: false,
     }
   },
   created() {
     this.carregaDados()
   },
   methods: {
-    // get e set iniciais
     solicitaDados() {
       return axios.get().catch((err) => {
         this.carregando = false
@@ -96,7 +102,15 @@ export default {
         )
       })
 
+      this.obitos = arrayComElementosUnicos.filter((item) => {
+        return (
+          item.obitoConfirmado &&
+          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
+        )
+      })
+
       this.ultimaAtualizacao = new Date()
+      this.atualizandoGraficos = false
       this.carregando = false
     },
   },
@@ -117,6 +131,7 @@ export default {
 
 @media screen and (max-width: 768px) {
   .graficos {
+    width: calc(100vw - 20px);
     padding: 10px;
   }
 }

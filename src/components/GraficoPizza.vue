@@ -55,7 +55,7 @@ export default {
           center: ['50%', '50%'],
           data: [
             { value: val.confirmados, name: 'Confirmados' },
-            { value: val.emAnalise, name: 'Em análise' },
+            { value: val.obitos, name: 'Óbitos' },
           ].sort(function(a, b) {
             return a.value - b.value
           }),
@@ -74,7 +74,7 @@ export default {
 <template>
   <div class="wrapper">
     <div v-if="!carregando" class="grafico">
-      <span class="tituloGrafico">Casos</span>
+      <div class="tituloGrafico">Taxa de letalidade</div>
       <Grafico :autoresize="true" :options="dados" />
     </div>
     <div v-else class="loadingRectangle1 skeleton"></div>
@@ -87,10 +87,14 @@ export default {
 }
 .grafico {
   text-align: center;
-  height: 500px;
-  width: 500px;
+  height: 380px;
+  width: calc(25% - 5px);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
+}
+
+.tituloGrafico {
+  padding-top: 30px;
 }
 
 .skeleton {
@@ -107,9 +111,9 @@ export default {
 }
 
 .loadingRectangle1 {
-  width: calc(33% - 7px);
+  width: calc(25% - 5px);
   margin-top: 10px;
-  height: 300px;
+  height: 380px;
 }
 
 @keyframes opacityAnimation {
@@ -133,7 +137,7 @@ export default {
 @media screen and (max-width: 768px) {
   .grafico {
     height: 300px;
-    width: 100vw;
+    width: 100%;
   }
 
   .loadingRectangle1 {
@@ -144,13 +148,8 @@ export default {
 
 <style scoped>
 .echarts {
-  width: calc(100% - 20px) !important;
+  margin-top: -30px;
+  width: 100% !important;
   height: 100% !important;
-}
-@media screen and (max-width: 768px) {
-  .echarts {
-    width: calc(100% - 20px) !important;
-    height: 100% !important;
-  }
 }
 </style>

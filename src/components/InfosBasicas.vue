@@ -25,7 +25,7 @@ export default {
     permiteAtualizar() {
       const ultimaAtualizacao = Number(this.atualizadoEm.split(' ').shift())
       // Atualização automática quando chega aos 10 minutos
-      if (ultimaAtualizacao > 9) {
+      if (ultimaAtualizacao > 0) {
         this.$emit('atualizar')
       }
       return ultimaAtualizacao >= 1
@@ -62,10 +62,10 @@ export default {
       <div class="separador" />
       <span class="casos">{{ casos.negativos }} negativos</span>
     </section>
+    <div class="separadorHorizontal" />
     <section class="footerInfos">
       <span class="ultimaAtualizacao"> Atualizado há {{ atualizadoEm }} </span>
     </section>
-    <div class="separadorHorizontal" />
   </div>
   <div v-else class="containerInfos">
     <section class="containerCasos">
@@ -73,16 +73,17 @@ export default {
       <div class="loadingRectangle1 skeleton" />
       <div class="loadingRectangle1 skeleton" />
     </section>
+    <div class="separadorHorizontal" />
     <section class="footerInfos">
       <div class="loadingRectangle2 skeleton" />
     </section>
-    <div class="separadorHorizontal" />
   </div>
 </template>
 
 <style scoped>
 .containerInfos {
   animation: opacityAnimation 1s ease-in;
+  width: 100%;
 }
 
 .containerCasos {
@@ -112,10 +113,11 @@ export default {
   color: black;
   opacity: 0.4;
   user-select: none;
+  width: calc(100% - 30px);
 }
 
 .separadorHorizontal {
-  width: 100%;
+  width: calc(100% - 20px);
   height: 2px;
   background-color: black;
   opacity: 0.1;
@@ -173,6 +175,10 @@ export default {
     margin-top: 10px;
   }
 
+  .loadingRectangle1:last-child {
+    margin-bottom: 10px;
+  }
+
   .loadingRectangle2 {
     width: calc(100% + 10px) !important;
     margin-left: -10px;
@@ -184,7 +190,7 @@ export default {
   }
 
   .separador {
-    width: 100%;
+    width: calc(100% - 20px);
     height: 2px;
     background-color: black;
     opacity: 0.1;
