@@ -63,6 +63,7 @@ export default {
       return axios.get().catch((err) => {
         this.carregando = false
         this.erro = err
+        alert(err)
       })
     },
     async carregaDados() {
