@@ -63,9 +63,7 @@ export default {
       <span class="casos">{{ casos.negativos }} negativos</span>
     </section>
     <section class="footerInfos">
-      <span class="ultimaAtualizacao">
-        Dados atualizados há {{ atualizadoEm }}
-      </span>
+      <span class="ultimaAtualizacao"> Atualizado há {{ atualizadoEm }} </span>
     </section>
     <div class="separadorHorizontal" />
   </div>
