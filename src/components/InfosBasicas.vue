@@ -178,6 +178,11 @@ export default {
     margin-left: -10px;
   }
 
+  .footerInfos {
+    display: flex;
+    justify-content: center;
+  }
+
   .separador {
     width: 100%;
     height: 2px;
