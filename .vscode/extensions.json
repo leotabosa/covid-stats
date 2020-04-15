@@ -1,0 +1,23 @@
+{
+  "recommendations": [
+    // Realce de sintaxe e outras coisas para o Vue
+    // https://github.com/vuejs/vetur
+    "octref.vetur",
+
+    // vue-peek
+    // https://github.com/fuzinato/vscode-vue-peek
+    "dariofuzinato.vue-peek",
+
+    // Lint ao salvar para o ESLint
+    // https://github.com/Microsoft/vscode-eslint
+    "dbaeumer.vscode-eslint",
+
+    // Format ao salvar para o Prettier
+    // https://github.com/prettier/prettier-vscode
+    "esbenp.prettier-vscode",
+
+    // Para visualizar alterações Git
+    // https://github.com/eamodio/vscode-gitlens
+    "eamodio.gitlens"
+  ]
+}
