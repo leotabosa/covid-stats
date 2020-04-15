@@ -14,7 +14,7 @@ export default {}
   justify-content: center;
   height: 30px;
   padding: 15px;
-  width: 100%;
+  width: calc(100% - 30px);
   background-color: black;
 }
 

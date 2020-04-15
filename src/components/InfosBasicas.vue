@@ -164,4 +164,23 @@ export default {
     background-position: 600px 0;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .containerCasos {
+    flex-direction: column;
+  }
+
+  .loadingSquare {
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .separador {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    opacity: 0.1;
+  }
+}
 </style>
