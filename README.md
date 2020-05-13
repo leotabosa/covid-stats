@@ -1,5 +1,7 @@
 # covid
 
+https://covid-ceara.herokuapp.com/
+
 Estatísticas epidemiológicas do Ceará.
 
 ## Ambiente de desenvolvimento
