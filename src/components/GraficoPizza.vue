@@ -1,6 +1,7 @@
 <script>
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
 
 const Grafico = () => import('vue-echarts')
 
@@ -33,6 +34,10 @@ export default {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)',
         },
+        legend: {
+          show: true,
+          bottom: 25,
+        },
         visualMap: {
           show: false,
           min: 80,
@@ -56,6 +61,7 @@ export default {
           data: [
             { value: val.confirmados, name: 'Confirmados' },
             { value: val.obitos, name: 'Óbitos' },
+            { value: val.suspeitos, name: 'Suspeitos' },
           ].sort(function(a, b) {
             return a.value - b.value
           }),

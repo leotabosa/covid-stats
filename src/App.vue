@@ -19,7 +19,7 @@
         :carregando="carregando || atualizandoGraficos"
         :dados-grafico="{
           confirmados: casosConfirmados,
-          emAnalise: casosSuspeitos,
+          suspeitos: casosSuspeitos,
           obitos: obitos,
         }"
       />
