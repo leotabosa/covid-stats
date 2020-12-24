@@ -60,7 +60,7 @@ export default {
       <div class="separador" />
       <span class="casos">{{ casos.emAnalise }} em análise</span>
       <div class="separador" />
-      <span class="casos">{{ casos.negativos }} negativos</span>
+      <span class="casos">{{ casos.obitos }} óbitos</span>
     </section>
     <div class="separadorHorizontal" />
     <section class="footerInfos">
@@ -117,7 +117,8 @@ export default {
 }
 
 .separadorHorizontal {
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
+  margin-left: 20px;
   height: 2px;
   background-color: black;
   opacity: 0.1;

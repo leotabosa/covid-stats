@@ -11,9 +11,8 @@ export default {}
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 30px;
-  padding: 15px;
+  padding: 15px 20px;
   width: calc(100% - 30px);
   background-color: black;
 }

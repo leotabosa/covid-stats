@@ -4,9 +4,9 @@
     <InfosBasicas
       :carregando="carregando"
       :casos="{
-        negativos: casosNegativos.length,
-        confirmados: casosConfirmados.length,
-        emAnalise: casosEmAnalise.length,
+        confirmados: casosConfirmados,
+        emAnalise: casosSuspeitos,
+        obitos: obitos,
       }"
       :ultima-atualizacao="ultimaAtualizacao"
       @atualizar="
@@ -18,9 +18,9 @@
       <GraficoPizza
         :carregando="carregando || atualizandoGraficos"
         :dados-grafico="{
-          confirmados: casosConfirmados.length,
-          emAnalise: casosEmAnalise.length,
-          obitos: obitos.length,
+          confirmados: casosConfirmados,
+          emAnalise: casosSuspeitos,
+          obitos: obitos,
         }"
       />
     </div>
@@ -33,8 +33,7 @@ import MenuDeTopo from './components/MenuDeTopo'
 import InfosBasicas from './components/InfosBasicas'
 
 const axios = Axios.create({
-  baseURL:
-    'https://indicadores.integrasus.saude.ce.gov.br/api/casos-coronavirus',
+  baseURL: 'https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/ce',
 })
 export default {
   components: {
@@ -44,11 +43,10 @@ export default {
   },
   data() {
     return {
-      casosConfirmados: [],
-      casosEmAnalise: [],
-      casosNegativos: [],
-      obitos: [],
-      dadosNaoFiltrados: [],
+      casosConfirmados: 0,
+      casosSuspeitos: 0,
+      casosNegativos: 0,
+      obitos: 0,
       ultimaAtualizacao: new Date(),
       carregando: true,
       erro: false,
@@ -69,46 +67,9 @@ export default {
     async carregaDados() {
       const { data } = await this.solicitaDados()
 
-      // Filtra codigoPaciente duplicados
-      const arrayComElementosUnicos = data.filter((item, i) => {
-        const itemParaComparar = data.find(
-          (obj) => obj.codigoPaciente === item.codigoPaciente
-        )
-
-        return data.indexOf(itemParaComparar) === i
-      })
-
-      this.dadosNaoFiltrados = arrayComElementosUnicos
-
-      // Filtra para casos confirmados
-      this.casosConfirmados = arrayComElementosUnicos.filter((item) => {
-        return (
-          item.resultadoFinalExame === 'Positivo' &&
-          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
-        )
-      })
-
-      // Filtra para casos em análise
-      this.casosEmAnalise = arrayComElementosUnicos.filter((item) => {
-        return (
-          item.resultadoFinalExame === 'Em Análise' &&
-          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
-        )
-      })
-
-      this.casosNegativos = arrayComElementosUnicos.filter((item) => {
-        return (
-          item.resultadoFinalExame === 'Negativo' &&
-          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
-        )
-      })
-
-      this.obitos = arrayComElementosUnicos.filter((item) => {
-        return (
-          item.obitoConfirmado &&
-          (item.estadoPaciente === 'CE' || !item.estadoPaciente)
-        )
-      })
+      this.obitos = data.deaths
+      this.casosSuspeitos = data.suspects
+      this.casosConfirmados = data.cases
 
       this.ultimaAtualizacao = new Date()
       this.atualizandoGraficos = false
