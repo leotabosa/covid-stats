@@ -1,5 +1,7 @@
 # covid
 
+Pequeno projeto para estudo de biblioteca de gráficos.
+
 https://covid-ceara.herokuapp.com/
 
 Utiliza a https://covid19-brazil-api-docs.now.sh/
